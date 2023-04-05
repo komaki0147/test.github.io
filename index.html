@@ -1,19 +1,23 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>How old are you?</title>
-    </head>
-    <body>
-    
-        <form action="main.php" method="post">
-        你想计算的第一个数: <input type="text" name="num_1"><br>
-        你想计算的第二个数: <input type="text" name="num_2"><br>
-        <input type="radio" name="cal" value="plus">+
-		<input type="radio" name="cal" value="sub">-
-		<input type="radio" name="cal" value="mul">*
-		<input type="radio" name="cal" value="div">/
-        <input type="submit" value="update">
-        </form>
-    
-    </body>
+<head>
+	<meta charset="utf-8">
+	<title>抽奖</title>
+</head>
+<body>
+	<h1>抽奖</h1>
+	<form method="post">
+		<p>请输入参与抽奖的人员名单（每个名字一行）：</p>
+		<textarea name="names" rows="10" cols="50"></textarea>
+		<p><input type="submit" name="submit" value="抽奖"></p>
+	</form>
+
+	<?php
+		if (isset($_POST['submit'])) {
+			$names = explode("\n", $_POST['names']); // 将输入的名单分割成数组
+			$winner = array_rand($names); // 随机从数组中选择一个获奖者
+			echo "<p>恭喜获奖者：".trim($names[$winner])."！</p>"; // 显示获奖者
+		}
+	?>
+</body>
 </html>
