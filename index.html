@@ -2,14 +2,27 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>抽奖</title>
+	<title>吃点啥</title>
 </head>
 <body>
-	<form action="main.php" method="post">
-	<h1>抽奖</h1>
-		<p>请输入参与抽奖的人员名单（每个名字一行）：</p>
-		<textarea name="names" rows="10" cols="50"></textarea>
-		<p><input type="submit" name="submit" value="抽奖"></p>
-	</form>
+	<h1>吃点啥</h1>
+		<p>输入备选名单（每个名字一行）：</p>
+		<textarea id="names" rows="10" cols="50"></textarea>
+		<button onclick="splitText()">开抽</button>
+		<a href="https://www.google.com/maps/search/" id = "link"><p id="result"></p></a>
+
+	<script>
+		function splitText() {
+			var textarea = document.getElementById("names");
+			var link = document.getElementById("link");
+			var text = textarea.value;
+			var lines = text.split("\n");
+			var long = lines.length;
+			var result = lines[Math.floor((Math.random()*long))];
+			var url = "https://www.google.com/maps/search/" + result;
+			link.href = url;
+			document.getElementById("result").innerHTML = result;
+		}
+	</script>
 </body>
 </html>
