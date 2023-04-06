@@ -10,18 +10,24 @@
 		<textarea id="names" rows="10" cols="50"></textarea>
 		<button onclick="splitText()">开抽</button>
 		<a href="https://www.google.com/maps/search/" id = "link"><p id="result"></p></a>
-
+		<button onclick="openGoogleMaps()">打开地图</button>
 	<script>
 		function splitText() {
 			var textarea = document.getElementById("names");
 			var link = document.getElementById("link");
 			var text = textarea.value;
-			var lines = text.split("\n");
+			var lines = text.split("\n"); // split the text by line breaks
 			var long = lines.length;
 			var result = lines[Math.floor((Math.random()*long))];
 			var url = "https://www.google.com/maps/search/" + result;
 			link.href = url;
 			document.getElementById("result").innerHTML = result;
+		}
+
+		function openGoogleMaps() {
+			var result = document.getElementById("result").innerText;
+			var url = "http://maps.google.com/maps?q=" + encodeURIComponent(result);
+			window.location.href = url;
 		}
 	</script>
 </body>
